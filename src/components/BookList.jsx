@@ -12,6 +12,19 @@ export default class BookList extends React.Component {
     selectedBookImage: null,
   };
 
+  fetchBooksHandler = async () => {
+    try {
+      const response = await fetch("https://m5-d7-arzhk-books-backend.herokuapp.com/books", {
+        method: "GET",
+      });
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   filterBooks = (filterQuery) => {
     if (filterQuery.length > 0) {
       let filteredBooks = Fantasy.filter((e) => e.title.toLowerCase().includes(filterQuery.toLowerCase()));
@@ -22,6 +35,10 @@ export default class BookList extends React.Component {
   };
   selectBook = (id, imageUrl) => {
     this.setState({ selectedBookID: id, selectedBookImage: imageUrl });
+  };
+
+  componentDidMount = () => {
+    this.fetchBooksHandler();
   };
 
   render() {
