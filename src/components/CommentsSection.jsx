@@ -22,7 +22,7 @@ class CommentsSection extends React.Component {
         this.setState({ isLoading: false });
         this.setState({ data });
       }, 500);
-      this.fetchCommentsHandler(this.state.selectedBookID);
+      this.fetchCommentsHandler(this.props.selectedBookID);
     } catch (error) {
       console.error(`API ERROR : ${error.message}`);
     }
