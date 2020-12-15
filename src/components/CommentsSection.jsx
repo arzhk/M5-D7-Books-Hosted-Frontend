@@ -14,7 +14,7 @@ class CommentsSection extends React.Component {
   fetchBookHandler = async (bookID) => {
     try {
       this.setState({ isLoading: true });
-      const response = await fetch(apiData.url + `books/${bookID}/`, {
+      const response = await fetch(`https://m5-d7-arzhk-books-backend.herokuapp.com/books/${bookID}`, {
         method: "GET",
       });
       const data = await response.json();
@@ -31,7 +31,7 @@ class CommentsSection extends React.Component {
   fetchCommentsHandler = async (bookID) => {
     try {
       this.setState({ isLoading: true });
-      const response = await fetch(apiData.url + `books/${bookID}/comments`, {
+      const response = await fetch(`https://m5-d7-arzhk-books-backend.herokuapp.com/books/${bookID}/comments`, {
         method: "GET",
       });
       const data = await response.json();
