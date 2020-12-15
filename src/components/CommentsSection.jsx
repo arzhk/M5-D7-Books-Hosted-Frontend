@@ -11,16 +11,31 @@ class CommentsSection extends React.Component {
     isLoading: this.props.isLoading,
   };
 
+  fetchBookHandler = async (bookID) => {
+    try {
+      this.setState({ isLoading: true });
+      const response = await fetch(apiData.url + `books/${bookID}/`, {
+        method: "GET",
+      });
+      const data = await response.json();
+      setTimeout(() => {
+        this.setState({ isLoading: false });
+        this.setState({ data });
+      }, 500);
+      this.fetchCommentsHandler();
+    } catch (error) {
+      console.error(`API ERROR : ${error.message}`);
+    }
+  };
+
   fetchCommentsHandler = async (bookID) => {
     try {
       this.setState({ isLoading: true });
-      const response = await fetch(apiData.url + `${bookID}/`, {
+      const response = await fetch(apiData.url + `books/${bookID}/comments`, {
         method: "GET",
-        headers: {
-          Authorization: apiData.authKey,
-        },
       });
       const data = await response.json();
+      console.log(data);
       setTimeout(() => {
         this.setState({ isLoading: false });
         this.setState({ data });
@@ -31,12 +46,12 @@ class CommentsSection extends React.Component {
   };
 
   componentDidMount = () => {
-    this.fetchCommentsHandler(this.state.selectedBookID);
+    this.fetchBookHandler(this.state.selectedBookID);
   };
 
   componentDidUpdate = (prevProps) => {
     if (prevProps.selectedBookID !== this.props.selectedBookID) {
-      this.fetchCommentsHandler(this.props.selectedBookID);
+      this.fetchBookHandler(this.props.selectedBookID);
       this.setState({ selectedBookImage: this.props.selectedBookImage });
     }
   };
