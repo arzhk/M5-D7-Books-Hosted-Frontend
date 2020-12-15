@@ -2,11 +2,10 @@ import React from "react";
 import { Container, Row, Col, FormControl } from "react-bootstrap";
 import CommentsSection from "./CommentsSection";
 import SingleBook from "./SingleBook";
-import Fantasy from "../data/fantasy.json";
 
 export default class BookList extends React.Component {
   state = {
-    books: Fantasy,
+    books: [],
     isFiltered: false,
     selectedBookID: null,
     selectedBookImage: null,
@@ -19,20 +18,22 @@ export default class BookList extends React.Component {
       });
 
       const data = await response.json();
-      console.log(data);
+      this.setState({ books: data });
     } catch (error) {
       console.log(error);
     }
   };
 
-  filterBooks = (filterQuery) => {
+  filterBooks = async (filterQuery) => {
     if (filterQuery.length > 0) {
-      let filteredBooks = Fantasy.filter((e) => e.title.toLowerCase().includes(filterQuery.toLowerCase()));
+      await this.fetchBooksHandler();
+      let filteredBooks = this.state.books.filter((e) => e.title.toLowerCase().includes(filterQuery.toLowerCase()));
       this.setState({ books: filteredBooks, isFiltered: true });
     } else {
-      this.setState({ books: Fantasy, isFiltered: false });
+      this.fetchBooksHandler();
     }
   };
+
   selectBook = (id, imageUrl) => {
     this.setState({ selectedBookID: id, selectedBookImage: imageUrl });
   };
@@ -72,7 +73,7 @@ export default class BookList extends React.Component {
           </Col>
         </Row>
         <Row>
-          {this.state.books.map((e, index) => (
+          {this.state.books.slice(0, 48).map((e, index) => (
             <Col key={index} className="mb-4" xs={3}>
               <SingleBook book={e} selectBook={this.selectBook} isSelected={this.state.selectedBookID === e.asin} />
             </Col>
