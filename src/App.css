@@ -30,16 +30,36 @@ section {
 }
 
 .navbar {
-  background-color: #0d87d4 !important;
+  background-color: rgba(0, 0, 0, 0) !important;
   width: 100%;
-  padding: 20px !important;
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
   z-index: 999;
+}
+
+h1 {
+  font-family: "Xanh Mono", monospace;
+}
+
+.navbar a {
+  color: rgb(51, 107, 117) !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 14px;
+  margin: 0rem 1rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  font-size: 0.9rem;
+}
+
+.navbar a:hover {
+  color: #fff !important;
+  background-color: rgb(51, 107, 117) !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1px;
 }
 
 .jumbotron {
   border-radius: 0px !important;
-  padding: 14rem 3rem !important;
+  padding: 7rem 3rem !important;
 }
 
 .card {
@@ -117,4 +137,79 @@ small {
   background-repeat: no-repeat;
   color: #fff;
   text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+.sale-banner-main {
+  background-color: rgb(148, 24, 24);
+  width: 100%;
+  color: #fff;
+  padding: 10px;
+}
+
+.sale-banner-main h1,
+.sale-banner-main p {
+  text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.15);
+  margin: 0;
+}
+
+.sale-banner-main a {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sale-banner-main a:hover {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+  text-decoration: none !important;
+}
+
+#search-bar-container {
+  position: relative;
+}
+
+#search-bar {
+  border: 3px solid rgb(51, 107, 117) !important;
+  border-right: 44px solid rgb(51, 107, 117) !important;
+  padding: 4px 10px;
+}
+
+.navbar input::placeholder {
+  color: rgba(0, 0, 0, 0.4) !important;
+  font-size: 0.9rem;
+}
+
+.fa-search {
+  color: #fff;
+  position: absolute;
+  right: 14px;
+  top: 9px;
+  font-size: 1.15rem;
+}
+
+.cart-button {
+  border: none;
+  background-color: transparent;
+  font-size: 1.25rem;
+  margin-top: 2px;
+}
+
+.cart-button:focus {
+  outline: none;
+}
+
+#basket-main-container {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  width: 300px;
+  z-index: 999;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  padding: 20px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 0px 6px rgba(0, 0, 0, 0.25);
+}
+
+.header-brdr-b {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }

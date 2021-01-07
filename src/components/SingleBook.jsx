@@ -28,7 +28,7 @@ class SingleBook extends React.Component {
           </div>
           <div className="d-flex justify-content-between align-items-center">
             <Card.Text className="price-info font-weight-bold mb-0">
-              <i className="fas fa-tags mr-2"></i>£{book.price}
+              <i className="fas fa-tags mr-2"></i>£{parseFloat(book.price).toFixed(2)}
             </Card.Text>
             <Button variant="success" className="btn-addtocart">
               <i className="fas fa-cart-plus"></i>
